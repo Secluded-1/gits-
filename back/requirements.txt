@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+pydantic[email]
+passlib[bcrypt]
+python-jose[cryptography]
+python-multipart
+slowapi
+python-docx
+PyPDF2
+huggingface_hub
+llama-cpp-python
+python-pptx
+python-docx
+PyPDF2
