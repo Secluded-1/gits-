@@ -68,7 +68,6 @@ def _get_user_id(authorization: str, db):
 
 @app.post("/api/upload")
 async def upload_lecture(file: UploadFile = File(...), authorization: str = Header(None), db=Depends(get_db)):
-    # Проверка авторизации
     user_id = _get_user_id(authorization, db)
     
     content = await file.read()
@@ -110,7 +109,7 @@ def generate(request: Request, data: GenerateRequest, authorization: str = Heade
         raise HTTPException(status_code=400, detail="Текст больше 10 000 символов")
 
     try:
-        quiz = generate_quiz(data.text, num_questions=5)
+        quiz = generate_quiz(data.text, num_questions=5, title=data.title)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ошибка LLM: {str(e)}")
 

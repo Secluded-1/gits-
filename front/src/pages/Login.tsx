@@ -29,7 +29,7 @@ export default function Login() {
       <Header />
       <main className="mx-auto flex max-w-md flex-col px-6 pt-16">
         <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">Вход в систему</h1>
-        <p className="mt-2 text-sm text-slate-500">Введите email и пароль.</p>
+        <p className="mt-2 text-sm text-slate-500">Введите ваш email и пароль.</p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-4 rounded-2xl border border-slate-200 bg-white p-6">
           <div>

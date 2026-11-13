@@ -3,9 +3,5 @@ back/__pycache__/
 back/models/
 *.db
 *.sqlite3
-
 front/node_modules/
 front/dist/
-
-.env
-.DS_Store

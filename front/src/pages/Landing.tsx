@@ -6,26 +6,26 @@ const steps = [
   {
     number: "01",
     icon: ArrowUp,
-    title: "Upload your lecture",
-    description: "Start with a .txt, .docx, .pdf, .pptx file. Your existing materials are all you need.",
+    title: "Загрузите лекцию",
+    description: "Начните с файла .txt, .docx, .pdf или .pptx. Ваши материалы — это всё, что нужно.",
   },
   {
     number: "02",
     icon: Sparkles,
-    title: "Generate a quiz",
-    description: "Create questions and explanations based on the content of your lecture.",
+    title: "Создайте тест",
+    description: "Искусственный интеллект сгенерирует вопросы и объяснения на основе вашей лекции.",
   },
   {
     number: "03",
     icon: ArrowUpRight,
-    title: "Share with students",
-    description: "Publish your quiz and copy a link. Students can start from any device.",
+    title: "Поделитесь со студентами",
+    description: "Опубликуйте тест и скопируйте ссылку. Студенты смогут пройти его с любого устройства.",
   },
   {
     number: "04",
     icon: Check,
-    title: "Learn through practice",
-    description: "Students get clear feedback and explanations, then see their results.",
+    title: "Учитесь на практике",
+    description: "Студенты получат подробный фидбек и увидят свои результаты.",
   },
 ];
 
@@ -39,13 +39,13 @@ export default function Landing() {
               to="/login"
               className="rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
             >
-              Log In
+              Войти
             </Link>
             <Link
               to="/register"
               className="rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
-              Sign Up
+              Регистрация
             </Link>
           </>
         }
@@ -55,40 +55,39 @@ export default function Landing() {
       <section className="bg-slate-50">
         <div className="mx-auto max-w-[1440px] px-6 py-24 md:px-20">
           <p className="text-xs font-semibold tracking-[0.2em] text-slate-500">
-            FROM LECTURE TO LEARNING
+            ОТ ЛЕКЦИИ К ЗНАНИЯМ
           </p>
           <h1 className="mt-4 max-w-3xl text-5xl font-extrabold leading-[1.08] tracking-tight text-slate-900 md:text-[56px]">
-            Interactive Training Simulator Generator
+            Генератор интерактивных обучающих тестов
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-500">
-            Less time preparing. More time teaching. Turn your lecture files into interactive
-            quizzes that help students learn, practice, and understand.
+            Меньше времени на подготовку. Больше времени на обучение. Превращайте свои лекции в интерактивные тесты, которые помогают студентам учиться и понимать материал.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               to="/register"
               className="rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
-              Try for free
+              Попробовать бесплатно
             </Link>
             <Link
               to="/login"
               className="rounded-lg border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
             >
-              Log In
+              Войти
             </Link>
           </div>
           <p className="mt-6 text-sm text-slate-400">
-            Upload a lecture. Generate a quiz. Share it with your students.
+            Загрузите лекцию. Создайте тест. Поделитесь со студентами.
           </p>
         </div>
       </section>
 
       {/* How it works */}
       <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-20">
-        <h2 className="text-4xl font-extrabold tracking-tight text-slate-900">How it works</h2>
+        <h2 className="text-4xl font-extrabold tracking-tight text-slate-900">Как это работает</h2>
         <p className="mt-4 text-lg text-slate-500">
-          Your teaching material, transformed into meaningful practice.
+          Ваши учебные материалы, превращенные в полезную практику.
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -110,7 +109,7 @@ export default function Landing() {
       <footer className="border-t border-slate-200 bg-slate-50">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-2 px-6 py-8 md:flex-row md:items-center md:justify-between md:px-20">
           <p className="text-lg font-extrabold tracking-tight text-slate-900">GITS</p>
-          <p className="text-sm text-slate-400">Built for teaching. Designed for learning.</p>
+          <p className="text-sm text-slate-400">Создан для преподавания. Спроектирован для обучения.</p>
         </div>
       </footer>
     </div>

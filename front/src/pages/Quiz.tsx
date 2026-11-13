@@ -104,7 +104,7 @@ export default function Quiz() {
   }
 
   const headerRight = (
-    <span className="text-sm text-slate-400">Interactive Training Simulator Generator</span>
+    <span className="text-sm text-slate-400">Генератор интерактивных тестов</span>
   );
 
   if (loading) {
@@ -134,7 +134,7 @@ export default function Quiz() {
         <Header right={headerRight} />
         <div className="mx-auto max-w-2xl px-6 pt-20 text-center">
           <p className="text-xs font-semibold tracking-[0.2em] text-slate-400">
-            QUIZ COMPLETE
+            ТЕСТ ЗАВЕРШЕН
           </p>
           <p className="mt-3 text-lg text-slate-500">{quizTitle}</p>
 
@@ -142,18 +142,18 @@ export default function Quiz() {
             {finishedData!.score}/{finishedData!.total}
           </p>
           <p className="mt-6 text-lg text-slate-500">
-            You answered {finishedData!.score} out of {finishedData!.total} questions correctly
+            Вы ответили правильно на {finishedData!.score} из {finishedData!.total} вопросов
           </p>
 
           <div className="mt-10 grid grid-cols-2 divide-x divide-slate-200 border-y border-slate-200 py-6">
             <div>
-              <p className="text-sm text-slate-400">Score</p>
+              <p className="text-sm text-slate-400">Результат</p>
               <p className="mt-1 text-lg font-semibold text-slate-900">
                 {finishedData!.percentage}%
               </p>
             </div>
             <div>
-              <p className="text-sm text-slate-400">Time spent</p>
+              <p className="text-sm text-slate-400">Затраченное время</p>
               <p className="mt-1 text-lg font-semibold text-slate-900">
                 {formatTime(elapsed)}
               </p>
@@ -164,7 +164,7 @@ export default function Quiz() {
             onClick={handleRestart}
             className="mx-auto mt-10 rounded-lg bg-slate-900 px-8 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
           >
-            Try Again
+            Пройти заново
           </button>
         </div>
       </div>
@@ -183,7 +183,7 @@ export default function Quiz() {
       <div className="mx-auto max-w-3xl px-6 pb-16 pt-12">
         <div className="flex items-center justify-between text-sm">
           <p className="font-semibold text-slate-900">
-            Question {currentIndex + 1} of {total}
+            Вопрос {currentIndex + 1} из {total}
           </p>
           <p className="text-slate-400">{headerPercent}%</p>
         </div>
@@ -197,7 +197,7 @@ export default function Quiz() {
         <h1 className="mt-8 text-3xl font-extrabold leading-tight tracking-tight text-slate-900">
           {question.question}
         </h1>
-        <p className="mt-3 text-sm text-slate-400">Choose one answer.</p>
+        <p className="mt-3 text-sm text-slate-400">Выберите один вариант ответа.</p>
 
         <div className="mt-6 space-y-3">
           {question.options.map((option, idx) => {
@@ -251,15 +251,15 @@ export default function Quiz() {
           <div className="mt-6 rounded-xl border border-slate-200 p-6">
             {isCorrect ? (
               <p className="text-base font-semibold text-green-600">
-                Correct — well done.
+                Верно — отличная работа!
               </p>
             ) : (
               <p className="text-base font-semibold text-red-600">
-                Incorrect — the correct answer is {LETTERS[question.correct_index]}.
+                Неверно. Правильный ответ — {LETTERS[question.correct_index]}.
               </p>
             )}
             <p className="mt-3 text-sm font-semibold text-slate-900">
-              Why this is correct
+              Почему это правильно
             </p>
             <p className="mt-1 text-sm leading-relaxed text-slate-500">
               {question.explanation}
@@ -277,7 +277,7 @@ export default function Quiz() {
                 : "cursor-not-allowed bg-slate-400 text-white"
             }`}
           >
-            {currentIndex + 1 >= total ? "Finish" : "Next"}
+            {currentIndex + 1 >= total ? "Завершить" : "Далее"}
           </button>
         </div>
       </div>

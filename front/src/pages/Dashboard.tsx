@@ -62,17 +62,17 @@ export default function Dashboard() {
       let textToSend = "";
       
       if (fileInputRef.current?.files?.length) {
-        // Если выбран файл — сначала загружаем и парсим его
         setToast("Читаем файл...");
         const file = fileInputRef.current.files[0];
         const uploadRes = await apiUploadFile(file);
         textToSend = uploadRes.text;
       } else {
-        // Если файл не выбран, используем заглушку (для демо)
-        textToSend = "FastAPI — это современный веб-фреймворк для создания API. Он использует Pydantic для валидации данных и поддерживает async/await.";
+        setToast("Ошибка: выберите файл с лекцией");
+        setIsLoading(false);
+        return;
       }
 
-      setToast("Генерируем вопросы через LLM...");
+      setToast("Генерируем вопросы через ИИ...");
       const title = fileName
         ? fileName.replace(/\.[^/.]+$/, "")
         : `Тест по лекции (${new Date().toLocaleTimeString()})`;
@@ -99,7 +99,7 @@ export default function Dashboard() {
   }
 
   function formatDate(dateStr: string) {
-    return `Created ${new Date(dateStr).toLocaleDateString("en-US", {
+    return `Создан ${new Date(dateStr).toLocaleDateString("ru-RU", {
       month: "long",
       day: "numeric",
       year: "numeric",
@@ -114,19 +114,19 @@ export default function Dashboard() {
             onClick={handleLogout}
             className="rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
           >
-            Log Out
+            Выйти
           </button>
         }
       />
 
       <main className="mx-auto max-w-5xl px-6 py-12 md:px-10">
         <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">
-          Teacher Dashboard
+          Панель преподавателя
         </h1>
-        <p className="mt-2 text-slate-500">Turn your lectures into meaningful practice.</p>
+        <p className="mt-2 text-slate-500">Превратите лекции в полезную практику.</p>
 
         <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-8">
-          <h2 className="text-xl font-bold text-slate-900">Upload a new lecture</h2>
+          <h2 className="text-xl font-bold text-slate-900">Загрузите новую лекцию</h2>
 
           <div className="mt-5 flex flex-col items-center gap-4 md:flex-row">
             <div
@@ -145,7 +145,7 @@ export default function Dashboard() {
             >
               <UploadCloud className="h-7 w-7 text-slate-400" strokeWidth={1.5} />
               <p className="mt-4 text-sm font-medium text-slate-700">
-                {fileName ? fileName : "Drag and drop your file here or click to browse"}
+                {fileName ? fileName : "Перетащите файл сюда или нажмите для выбора"}
               </p>
               <p className="mt-2 text-xs text-slate-400">.txt, .docx, .pdf, .pptx</p>
               <input
@@ -162,21 +162,21 @@ export default function Dashboard() {
               disabled={isLoading}
               className="w-full shrink-0 rounded-lg bg-slate-900 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:bg-slate-400 md:w-auto"
             >
-              {isLoading ? "Generating..." : "Generate Quiz"}
+              {isLoading ? "Генерация..." : "Создать тест"}
             </button>
           </div>
         </section>
 
         <section className="mt-10">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">My Quizzes</h2>
-            <p className="text-sm text-slate-400">{quizzes.length} quizzes</p>
+            <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">Мои тесты</h2>
+            <p className="text-sm text-slate-400">{quizzes.length} шт.</p>
           </div>
 
           <div className="mt-5 space-y-4">
             {quizzes.length === 0 && (
               <p className="py-10 text-center text-slate-400">
-                Пока нет тестов. Нажмите «Generate Quiz», чтобы создать первый.
+                Пока нет тестов. Загрузите лекцию и нажмите «Создать тест».
               </p>
             )}
 
@@ -197,13 +197,13 @@ export default function Dashboard() {
 
                 <div className="flex items-center gap-3">
                   <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
-                    Published
+                    Опубликован
                   </span>
                   <button
                     onClick={() => handleCopyLink(quiz.public_slug)}
                     className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-50"
                   >
-                    {copiedId === quiz.public_slug ? "Copied!" : "Copy link"}
+                    {copiedId === quiz.public_slug ? "Скопировано!" : "Копировать ссылку"}
                   </button>
                 </div>
               </div>
