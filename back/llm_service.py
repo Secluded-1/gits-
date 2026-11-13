@@ -9,7 +9,7 @@ from pydantic import BaseModel
 
 try:
     from llama_cpp import Llama
-except ImportError:  # pragma: no cover
+except ImportError:
     Llama = None
 
 
@@ -66,7 +66,6 @@ _llm_lock = threading.Lock()
 
 
 def get_llm():
-    """Ленивая загрузка модели: один раз на процесс, потокобезопасно."""
     global _llm
     if _llm is not None:
         return _llm
