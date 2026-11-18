@@ -5,6 +5,9 @@ import io
 import docx
 import PyPDF2
 from pptx import Presentation
+from pptx.enum.shapes import MSO_SHAPE_TYPE
+from PIL import Image
+import winocr
 from fastapi import FastAPI, Depends, HTTPException, Header, Request, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import Limiter, _rate_limit_exceeded_handler
@@ -83,12 +86,25 @@ async def upload_lecture(file: UploadFile = File(...), authorization: str = Head
         elif filename.endswith(".pdf"):
             reader = PyPDF2.PdfReader(io.BytesIO(content))
             text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
+        
         elif filename.endswith(".pptx"):
             prs = Presentation(io.BytesIO(content))
             for slide in prs.slides:
                 for shape in slide.shapes:
-                    if hasattr(shape, "text"):
+                    if hasattr(shape, "text") and shape.text.strip():
                         text += shape.text + "\n"
+                    
+                    if shape.shape_type == MSO_SHAPE_TYPE.PICTURE:
+                        try:
+                            image_bytes = shape.image.blob
+                            img = Image.open(io.BytesIO(image_bytes))
+                            ocr_result = await winocr.recognize_pil(img, 'ru-RU')
+                            
+                            if ocr_result.text.strip():
+                                text += f"\n[Текст с картинки]: {ocr_result.text}\n"
+                        except Exception as ocr_err:
+                            print(f"Не удалось распознать изображение: {ocr_err}")
+                            continue
         else:
             raise HTTPException(status_code=400, detail="Неподдерживаемый формат файла")
     except Exception as e:

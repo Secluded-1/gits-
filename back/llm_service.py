@@ -28,7 +28,7 @@ class Quiz(BaseModel):
 
 
 MODELS_DIR = Path(__file__).resolve().parent / "models"
-DEFAULT_MODEL_FILENAME = "Qwen2.5-1.5B-Instruct-Multiple-Choice-Maker.Q4_K_M.gguf"
+DEFAULT_MODEL_FILENAME = "GITS_Quiz_Master.gguf"
 
 
 MODEL_PATH = Path(os.getenv("QUIZ_MODEL_PATH") or (MODELS_DIR / DEFAULT_MODEL_FILENAME))
